@@ -25,7 +25,10 @@
       "patch": "./cordis.patch.yml"
     }
   },
-  "keywords": [
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "lint": "eslint lib/index.js"
+  },
     "dsh",
     "opencode",
     "zen",
