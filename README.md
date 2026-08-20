@@ -1,5 +1,9 @@
 # dsh-llm-opencode
 
+[![npm version](https://img.shields.io/npm/v/dsh-llm-opencode)](https://www.npmjs.com/package/dsh-llm-opencode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue)](https://github.com/topics/dsh-plugin)
+
 OpenCode Zen free model provider adapter for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH).
 
 Registers the `opencode-zen` provider route in DSH's LLM seam, giving your coding agent access to OpenCode Zen's free-tier models — **no API key required for free models**, no credit card, no setup friction.
@@ -18,12 +22,20 @@ Registers the `opencode-zen` provider route in DSH's LLM seam, giving your codin
 ## Install
 
 ```bash
-# Into a DSH web profile
+# From npm (prebuilt, recommended)
 dsh plugin --profile web add dsh-llm-opencode
 
 # Or from GitHub directly
 dsh plugin --profile web add "github:bobowsh/dsh-llm-opencode#main"
 ```
+
+## Quick Start
+
+1. Install the plugin into your DSH profile (see above).
+2. Open DSH Web Settings → Models → select **OpenCode Zen** as your provider.
+3. Pick a free model (e.g. `deepseek-v4-flash-free`) and start coding — no API key needed.
+
+> Paid models require an API key. Set `OPENCODE_API_KEY` in DSH credentials (Settings → Credentials) or as an environment variable.
 
 ## How It Works
 
@@ -62,9 +74,19 @@ llm-opencode:
       maxTokens: 128000
 ```
 
+See [`settings.example.yaml`](settings.example.yaml) for a full annotated example.
+
 ## Bundle Patch
 
 The included `cordis.patch.yml` registers the `llm-opencode` plugin row into the DSH bundle loader, so the plugin is auto-loaded when installed into a profile.
+
+## Development
+
+```bash
+npm install
+npm test
+npm run lint
+```
 
 ## Requirements
 
@@ -73,4 +95,4 @@ The included `cordis.patch.yml` registers the `llm-opencode` plugin row into the
 
 ## License
 
-MIT
+MIT © [bobowsh](https://github.com/bobowsh)
