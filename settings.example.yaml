@@ -1,0 +1,17 @@
+# Example settings.yaml snippet for dsh-llm-opencode
+#
+# Copy this into your DSH profile's settings.yaml and adjust as needed.
+# Changes take effect immediately without restart.
+
+llm-opencode:
+  baseURL: "https://opencode.ai/zen/v1"
+  maxTokens: 128000
+  defaultContextWindow: 1000000
+  streamIdleTimeoutMs: 300000
+  # Optional: override the built-in free model catalog
+  # models:
+  #   - id: deepseek-v4-flash-free
+  #     name: DeepSeek V4 Flash Free
+  #     description: "DeepSeek V4 Flash free model via OpenCode Zen"
+  #     contextWindow: 200000
+  #     maxTokens: 128000
