@@ -1,0 +1,10 @@
+# dsh-llm-opencode bundle patch: registers the opencode zen 免费模型
+# provider adapter into the dsh harness LLM seam.
+#
+# 作为 bundle 层应用到 profile 根上（与 dsh-base 相同的 insert 语义）：
+# 插入一行 llm-opencode，由 loader 以 import('dsh-llm-opencode') 加载。
+# `opencode` provider 路由由本插件的 apply() 独占注册（pi-ai 的
+# providers.opencode 配置已从 settings.yaml 移除，两者互斥）。
+- insert:
+    - id: llm-opencode
+      name: dsh-llm-opencode

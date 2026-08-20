@@ -1,0 +1,4 @@
+node_modules/
+lib/types/
+*.tgz
+.DS_Store
