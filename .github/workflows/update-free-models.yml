@@ -1,0 +1,41 @@
+name: Update free models
+
+on:
+  schedule:
+    # 每周六 19:00（Asia/Shanghai，UTC+8）= 周六 11:00 UTC
+    - cron: "0 11 * * 6"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Sync free model catalog
+        run: node scripts/update-free-models.mjs
+
+      - name: Run smoke tests
+        run: node --test test/*.test.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet; then
+            echo "catalog already up to date, nothing to commit"
+            exit 0
+          fi
+          git add lib/index.js
+          git commit -m "chore: sync free model catalog from OpenCode Zen"
+          git push
