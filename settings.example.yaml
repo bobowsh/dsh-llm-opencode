@@ -8,6 +8,11 @@ llm-opencode:
   maxTokens: 128000
   defaultContextWindow: 1000000
   streamIdleTimeoutMs: 300000
+  # Optional: set to false to disable the startup auto-sync of the free model
+  # catalog (gateway /models membership + models.dev metadata). Default: true.
+  # Only applies while the built-in default catalog is in use; a custom
+  # `models:` list below is never overwritten by the sync.
+  # autoSyncModels: true
   # Optional: override the built-in free model catalog
   # models:
   #   - id: deepseek-v4-flash-free

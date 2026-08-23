@@ -46,6 +46,7 @@ This plugin implements the `LlmAdapter` interface from `@deepseek-ai/dsh-llm` an
 3. **Identity** — requests carry `User-Agent: opencode/1.0.0` and related headers to satisfy OpenCode Zen's client identity check (the default `deepseek-harness/...` user-agent is rejected by the gateway).
 4. **Credentials** — resolves the API key from DSH's credential store (env var `OPENCODE_API_KEY`) or the ambient environment. Free models work without a key; paid models require one.
 5. **Model discovery** — registers a discovery handler that fetches `/models` from the gateway and filters for `free`-tagged entries.
+6. **Startup catalog sync** — on every plugin load the free model catalog is refreshed in the background from the gateway (membership) plus [models.dev](https://github.com/sst/models.dev) (`name` / `limit.context` / `limit.output` metadata). Failures keep the built-in catalog; a custom `models:` list in settings is never overwritten. Disable with `autoSyncModels: false`.
 
 ## Configuration
 
@@ -59,6 +60,7 @@ The adapter is configurable through DSH's settings system (`llm-opencode` sectio
 | `defaultContextWindow` | `1000000` | Fallback context window for unknown models |
 | `streamIdleTimeoutMs` | `300000` | Max idle time (ms) before stream is considered dead |
 | `models` | *(built-in catalog)* | Override the model catalog |
+| `autoSyncModels` | `true` | Refresh the free model catalog from the gateway + models.dev on every startup |
 | `retryPolicy` | *(built-in)* | Retry behavior for transient errors |
 
 ### Example `settings.yaml` snippet
