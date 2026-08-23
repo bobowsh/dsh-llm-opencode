@@ -10,14 +10,21 @@ Registers the `opencode-zen` provider route in DSH's LLM seam, giving your codin
 
 ## Free Models
 
+Built-in catalog (verified against the gateway + [models.dev](https://github.com/sst/models.dev) on 2026-08-23; refreshed automatically at startup and weekly via CI):
+
 | Model | ID | Context | Max Output | Notes |
 |---|---|---|---|---|
 | DeepSeek V4 Flash Free | `deepseek-v4-flash-free` | 200K | 128K | DeepSeek's V4 Flash, SWE-bench ~79% |
 | Nemotron 3 Ultra Free | `nemotron-3-ultra-free` | 1M | 128K | NVIDIA's flagship, huge context |
+| Nemotron 3.5 Lightning Free | `nemotron-3.5-lightning-free` | 128K | 128K | NVIDIA's fast variant |
 | MiMo V2.5 Free | `mimo-v2.5-free` | 200K | 32K | Xiaomi's coding model |
-| Big Pickle | `big-pickle` | 200K | 128K | Stealth general-purpose model |
+| Hy3 Free | `hy3-free` | 190K | 64K | Tencent HY3 |
+| Laguna S 2.1 Free | `laguna-s-2.1-free` | 256K | 32K | |
+| Muse Spark 1.2 Free | `muse-spark-1.2-contributor-free` | 128K | 128K | |
+| Ox Alpha Free (Unlimited) | `x-preview-f-free` | 1M | 128K | Stealth preview, huge context |
+| Big Pickle | `big-pickle` | 200K | 32K | Stealth general-purpose model |
 
-> Free models are served through OpenCode Zen's public gateway. Availability may change; the adapter auto-discovers models tagged `free` from the `/models` endpoint.
+> Free models are served through OpenCode Zen's public gateway. Availability may change; the adapter auto-discovers models tagged `free` from the `/models` endpoint, and the built-in catalog is re-synced in the background on every startup (see **Startup catalog sync** below).
 
 ## Install
 
