@@ -12,6 +12,9 @@ import type { LlmAdapter, RetryPolicySchema } from "@deepseek-ai/dsh-llm";
 /** Public gateway endpoint for OpenCode Zen. */
 export declare const PUBLIC_BASE_URL: "https://opencode.ai/zen/v1";
 
+/** models.dev metadata source (per-model TOML files). */
+export declare const MODELS_DEV_URL: "https://raw.githubusercontent.com/sst/models.dev/dev/providers/opencode/models";
+
 /** Default maximum output tokens per request. */
 export declare const DEFAULT_MAX_TOKENS: 128000;
 
@@ -47,6 +50,7 @@ export declare const Config: z.ZodObject<{
     maxTokens: z.ZodNumber;
   }>>>;
   streamIdleTimeoutMs: z.ZodDefault<z.ZodNumber>;
+  autoSyncModels: z.ZodDefault<z.ZodBoolean>;
   retryPolicy: z.ZodType<z.infer<typeof RetryPolicySchema>>;
 }>;
 
@@ -65,6 +69,26 @@ export interface ResolvedOptions {
 
 /** Normalize raw config into resolved connection facts. */
 export declare function resolveAdapterOptions(config: Partial<ConfigType>): ResolvedOptions;
+
+/** Result of a free-model catalog sync. */
+export interface CatalogSyncResult {
+  models: CatalogModel[];
+  added: string[];
+  removed: string[];
+  droppedExtras: string[];
+  metadataFixed: string[];
+}
+
+/** Sync the free-model catalog from the gateway (membership) + models.dev (metadata). */
+export declare function fetchFreeModelCatalog(
+  currentCatalog?: CatalogModel[],
+  options?: {
+    baseURL?: string;
+    metaURL?: string;
+    signal?: AbortSignal;
+    warn?: (message: string) => void;
+  }
+): Promise<CatalogSyncResult>;
 
 /** OpenCode Zen adapter implementing the DSH LlmAdapter interface. */
 export declare class OpenCodeAdapter extends LlmAdapter {
