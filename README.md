@@ -59,7 +59,9 @@ dsh plugin --profile web add "github:bobowsh/dsh-llm-opencode#main"
 
 ## 配置
 
-适配器通过 DSH 的设置系统配置（`settings.yaml` 中的 `llm-opencode` 节），改动立即生效，无需重启。
+**开箱即用，无需手动配置。** 插件装入 profile 后自动注册（见「Bundle 补丁」），所有配置项都有合理默认值，`settings.yaml` 里**不需要**手工添加任何内容。
+
+只有需要覆盖默认值时才配置：优先在 DSH Web 设置 → 模型页面修改（所见即所得），或在 profile 的 `settings.yaml` 的 `llm-opencode` 节中覆盖个别字段。改动立即生效，无需重启。
 
 | 设置项 | 默认值 | 说明 |
 |---|---|---|
@@ -72,7 +74,9 @@ dsh plugin --profile web add "github:bobowsh/dsh-llm-opencode#main"
 | `autoSyncModels` | `true` | 每次启动时从网关 + models.dev 刷新免费模型目录 |
 | `retryPolicy` | *（内置）* | 瞬时错误的重试行为 |
 
-### `settings.yaml` 示例
+### `settings.yaml` 示例（可选）
+
+只有要覆盖默认值时才需要添加，以下仅为示意：
 
 ```yaml
 llm-opencode:

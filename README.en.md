@@ -59,7 +59,9 @@ This plugin implements the `LlmAdapter` interface from `@deepseek-ai/dsh-llm` an
 
 ## Configuration
 
-The adapter is configurable through DSH's settings system (`llm-opencode` section in `settings.yaml`). Changes take effect immediately without restart.
+**Zero configuration required.** The plugin registers itself when installed into a profile (see **Bundle Patch**), and every setting has a sensible default — you do **not** need to touch `settings.yaml` at all.
+
+Only override what you actually want to change: prefer the DSH Web Settings → Models page, or override individual fields in the `llm-opencode` section of your profile's `settings.yaml`. Changes take effect immediately without restart.
 
 | Setting | Default | Description |
 |---|---|---|
@@ -72,7 +74,9 @@ The adapter is configurable through DSH's settings system (`llm-opencode` sectio
 | `autoSyncModels` | `true` | Refresh the free model catalog from the gateway + models.dev on every startup |
 | `retryPolicy` | *(built-in)* | Retry behavior for transient errors |
 
-### Example `settings.yaml` snippet
+### Example `settings.yaml` snippet (optional)
+
+Only needed when overriding defaults:
 
 ```yaml
 llm-opencode:

@@ -1,6 +1,8 @@
 # Example settings.yaml snippet for dsh-llm-opencode
 #
-# Copy this into your DSH profile's settings.yaml and adjust as needed.
+# The plugin works OUT OF THE BOX with sane defaults — you do NOT need to
+# copy anything into your profile's settings.yaml. This file only documents
+# the available overrides for the rare cases where you want to change them.
 # Changes take effect immediately without restart.
 
 llm-opencode:
