@@ -12,7 +12,7 @@ Registers the `opencode-zen` provider route in DSH's LLM seam, giving your codin
 
 ## Free Models
 
-Built-in catalog (verified against the gateway + [models.dev](https://github.com/sst/models.dev) on 2026-08-23; refreshed automatically at startup and weekly via CI):
+Built-in catalog (verified against the gateway + [models.dev](https://github.com/sst/models.dev) on 2026-08-29; refreshed automatically at startup and weekly via CI):
 
 | Model | ID | Context | Max Output | Notes |
 |---|---|---|---|---|
@@ -23,7 +23,7 @@ Built-in catalog (verified against the gateway + [models.dev](https://github.com
 | Hy3 Free | `hy3-free` | 190K | 64K | Tencent HY3 |
 | Laguna S 2.1 Free | `laguna-s-2.1-free` | 256K | 32K | |
 | Muse Spark 1.2 Free | `muse-spark-1.2-contributor-free` | 128K | 128K | |
-| Ox Alpha Free (Unlimited) | `x-preview-f-free` | 1M | 128K | Stealth preview, huge context |
+| Ling 3.0 Flash Fin Free | `ling-3.0-flash-fin-free` | 128K | 128K | Finance-oriented free model (models.dev gives no context/output limit, falls back to 128K) |
 | Big Pickle | `big-pickle` | 200K | 32K | Stealth general-purpose model |
 
 > Free models are served through OpenCode Zen's public gateway. Availability may change; the adapter auto-discovers models tagged `free` from the `/models` endpoint, and the built-in catalog is re-synced in the background on every startup (see **Startup catalog sync** below).

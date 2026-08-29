@@ -12,7 +12,7 @@
 
 ## 免费模型
 
-内置目录（2026-08-23 已对网关 + [models.dev](https://github.com/sst/models.dev) 核实；每次启动自动刷新，每周六 CI 定时同步）：
+内置目录（2026-08-29 已对网关 + [models.dev](https://github.com/sst/models.dev) 核实；每次启动自动刷新，每周六 CI 定时同步）：
 
 | 模型 | ID | 上下文 | 最大输出 | 备注 |
 |---|---|---|---|---|
@@ -23,7 +23,7 @@
 | Hy3 Free | `hy3-free` | 190K | 64K | 腾讯混元 HY3 |
 | Laguna S 2.1 Free | `laguna-s-2.1-free` | 256K | 32K | |
 | Muse Spark 1.2 Free | `muse-spark-1.2-contributor-free` | 128K | 128K | |
-| Ox Alpha Free (Unlimited) | `x-preview-f-free` | 1M | 128K | 隐身预览模型，超大上下文 |
+| Ling 3.0 Flash Fin Free | `ling-3.0-flash-fin-free` | 128K | 128K | 金融向免费模型（models.dev 未声明上下文/输出上限，按 128K 兜底） |
 | Big Pickle | `big-pickle` | 200K | 32K | 隐身通用模型 |
 
 > 免费模型由 OpenCode Zen 公共网关提供服务，可用性可能变化；适配器会从 `/models` 端点自动发现带 `free` 标记的模型，内置目录也会在每次启动时后台重新同步（见下文「启动目录同步」）。
