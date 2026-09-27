@@ -105,8 +105,10 @@ npm run lint
 
 ## 环境要求
 
-- DeepSeek Harness `>= 0.1.0-rc.7`
-- `@deepseek-ai/cordis ^4.0.1`（peer dependency）
+- DeepSeek Harness `>= 0.1.7`（本插件使用了 0.1.7 起才稳定化的 `LlmAdapter` 归因头契约、`loader/volatile-update` 配置注入与 `dsh-util-values` 的 `deepEqualJson`，且不再依赖 0.1.2 起已移除的 `@deepseek-ai/dsh-settings` 的 `installSettingsSection`/`settingsNamespace`）
+- `@deepseek-ai/cordis ~4.0.4`（peer dependency）
+
+> 免费模型目录由网关 `/models` 端点动态发现并在插件加载时后台同步，因此即使内置目录因网关调整而过时，运行时也会自动刷新（见上「工作原理 · 模型发现」）。
 
 ## 许可证
 
