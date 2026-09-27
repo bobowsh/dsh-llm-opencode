@@ -54,7 +54,6 @@ describe("model catalog", () => {
     assert.ok(ids.includes("deepseek-v4-flash-free"));
     assert.ok(ids.includes("nemotron-3-ultra-free"));
     assert.ok(ids.includes("mimo-v2.5-free"));
-    assert.ok(ids.includes("big-pickle"));
   });
 
   it("reflects the 2026-09-27 gateway refresh", () => {
@@ -72,8 +71,15 @@ describe("model catalog", () => {
     // 上游已下架的成员不得留在兜底目录里。
     assert.ok(!ids.includes("hy3-free"), "hy3-free was removed upstream");
     assert.ok(!ids.includes("laguna-s-2.1-free"), "laguna-s-2.1-free was removed upstream");
-    assert.equal(ids.length, 12);
+    assert.equal(ids.length, 11);
     assert.equal(new Set(ids).size, ids.length, "model ids must be unique");
+  });
+
+  it("keeps only free-tagged models", () => {
+    for (const m of DEFAULT_MODELS) {
+      assert.match(m.id, /free/i, `${m.id} is not a free-tagged model`);
+    }
+    assert.ok(!DEFAULT_MODELS.some((m) => m.id === "big-pickle"), "big-pickle is not free-tagged");
   });
 
   it("has positive contextWindow and maxTokens for every model", () => {
