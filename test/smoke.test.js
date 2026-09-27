@@ -49,12 +49,31 @@ describe("config resolution", () => {
 });
 
 describe("model catalog", () => {
-  it("contains the four verified free models", () => {
+  it("contains the long-standing verified free models", () => {
     const ids = DEFAULT_MODELS.map((m) => m.id);
     assert.ok(ids.includes("deepseek-v4-flash-free"));
     assert.ok(ids.includes("nemotron-3-ultra-free"));
     assert.ok(ids.includes("mimo-v2.5-free"));
     assert.ok(ids.includes("big-pickle"));
+  });
+
+  it("reflects the 2026-09-27 gateway refresh", () => {
+    const ids = DEFAULT_MODELS.map((m) => m.id);
+    // 网关新出现的免费成员必须在内置兜底目录里。
+    for (const id of [
+      "jev-1.13-free",
+      "muse-spark-1.3-contributor-free",
+      "mimo-v2.6-flash-free",
+      "space-bunny-free",
+      "longcat-2.5-preview-free"
+    ]) {
+      assert.ok(ids.includes(id), `${id} should be present after the refresh`);
+    }
+    // 上游已下架的成员不得留在兜底目录里。
+    assert.ok(!ids.includes("hy3-free"), "hy3-free was removed upstream");
+    assert.ok(!ids.includes("laguna-s-2.1-free"), "laguna-s-2.1-free was removed upstream");
+    assert.equal(ids.length, 12);
+    assert.equal(new Set(ids).size, ids.length, "model ids must be unique");
   });
 
   it("has positive contextWindow and maxTokens for every model", () => {
